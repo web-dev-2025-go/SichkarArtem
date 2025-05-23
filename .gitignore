@@ -1,0 +1,35 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Output of the go build command
+/bin/
+/build/
+
+
+# Ignore vendor directory (if you use Go modules, often you don't check in vendor)
+vendor/
+
+# Go module files
+/go.sum
+
+# Dependency directories (remove if you commit dependencies)
+# Coverage files
+*.out
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+/tmp/
