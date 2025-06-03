@@ -10,10 +10,10 @@ type Friend struct {
 type IFriend interface {
 	IPerson
 	GetMusic() string
-	AddMusic(music []string) string
+	AddMusic(music ...string) string
 }
 
-func NewFriend(name string, age uint, educationalInstitution string, music []string) IFriend {
+func NewFriend(name string, age uint8, educationalInstitution string, music ...string) IFriend {
 	return &Friend{
 		Person: Person{
 			name,
@@ -25,14 +25,17 @@ func NewFriend(name string, age uint, educationalInstitution string, music []str
 }
 
 func (f Friend) String() string {
-	return fmt.Sprintf("Name: %s\nAge: %d\nEducation: %s\nMusic:  %s\n", f.Name, f.Age, f.EducationalInstitution, f.Music)
+	return fmt.Sprintf(
+		"Name: %s\nAge: %d\nEducation: %s\nMusic:  %s\n",
+		f.Name, f.Age, f.EducationalInstitution, f.Music,
+	)
 }
 
 func (f Friend) Describe() {
 	fmt.Println(f)
 }
 
-func (f *Friend) AddMusic(music []string) string {
+func (f *Friend) AddMusic(music ...string) string {
 	f.Music = append(f.Music, music...)
 	fmt.Printf("len: %v,cap:%v", len(f.Music), cap(f.Music))
 	if len(f.Music) < cap(f.Music) {

@@ -4,16 +4,16 @@ import "fmt"
 
 type Person struct {
 	Name                   string
-	Age                    uint
+	Age                    uint8
 	EducationalInstitution string
 }
 type IPerson interface {
-	GetName() *string
+	GetName() string
 	Describe()
 	ChangeName(name string) string
 }
 
-func NewPerson(name string, age uint, educationalInstitution string) IPerson {
+func NewPerson(name string, age uint8, educationalInstitution string) IPerson {
 	return &Person{
 		Name:                   name,
 		Age:                    age,
@@ -21,12 +21,15 @@ func NewPerson(name string, age uint, educationalInstitution string) IPerson {
 	}
 }
 
-func (p *Person) GetName() *string {
-	return &p.Name
+func (p *Person) GetName() string {
+	return p.Name
 }
 
 func (p *Person) String() string {
-	return fmt.Sprintf("Name: %s\nAge: %d\nEducation: %s", p.Name, p.Age, p.EducationalInstitution)
+	return fmt.Sprintf(
+		"Name: %s\nAge: %d\nEducation: %s",
+		p.Name, p.Age, p.EducationalInstitution,
+	)
 }
 
 func (p Person) Describe() {
