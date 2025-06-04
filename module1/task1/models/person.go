@@ -1,6 +1,9 @@
-package model
+package models
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 type Person struct {
 	Name                   string
@@ -13,7 +16,7 @@ type IPerson interface {
 	ChangeName(name string) string
 }
 
-func NewPerson(name string, age uint8, educationalInstitution string) IPerson {
+func NewPerson(name string, age uint8, educationalInstitution string) *Person {
 	return &Person{
 		Name:                   name,
 		Age:                    age,
@@ -26,6 +29,7 @@ func (p *Person) GetName() string {
 }
 
 func (p *Person) String() string {
+	fmt.Print(3)
 	return fmt.Sprintf(
 		"Name: %s\nAge: %d\nEducation: %s",
 		p.Name, p.Age, p.EducationalInstitution,
@@ -33,7 +37,7 @@ func (p *Person) String() string {
 }
 
 func (p Person) Describe() {
-	fmt.Println(p)
+	log.Println(p)
 }
 
 func (p *Person) ChangeName(name string) string {

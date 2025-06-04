@@ -1,6 +1,9 @@
-package model
+package models
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 type Friend struct {
 	Person
@@ -15,12 +18,8 @@ type IFriend interface {
 
 func NewFriend(name string, age uint8, educationalInstitution string, music ...string) IFriend {
 	return &Friend{
-		Person: Person{
-			name,
-			age,
-			educationalInstitution,
-		},
-		Music: music,
+		Person: *NewPerson(name, age, educationalInstitution),
+		Music:  music,
 	}
 }
 
@@ -32,16 +31,11 @@ func (f Friend) String() string {
 }
 
 func (f Friend) Describe() {
-	fmt.Println(f)
+	log.Println(f)
 }
 
 func (f *Friend) AddMusic(music ...string) string {
 	f.Music = append(f.Music, music...)
-	fmt.Printf("len: %v,cap:%v", len(f.Music), cap(f.Music))
-	if len(f.Music) < cap(f.Music) {
-		f.Music = f.Music[:len(f.Music):len(f.Music)]
-	}
-
 	return fmt.Sprintf("Updated music list: %v", f.Music)
 }
 

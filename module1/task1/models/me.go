@@ -1,7 +1,8 @@
-package model
+package models
 
 import (
 	"fmt"
+	"log"
 )
 
 type Me struct {
@@ -18,11 +19,7 @@ type IMe interface {
 
 func NewMe(name string, age uint8, educationalInstitution string, hobbies string) IMe {
 	return &Me{
-		Person: Person{
-			name,
-			age,
-			educationalInstitution,
-		},
+		Person:  *NewPerson(name, age, educationalInstitution),
 		Hobbies: hobbies,
 	}
 }
@@ -51,5 +48,5 @@ func (m Me) String() string {
 }
 
 func (m Me) Describe() {
-	fmt.Println(m)
+	log.Println(m)
 }
